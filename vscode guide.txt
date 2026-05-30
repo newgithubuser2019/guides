@@ -1,0 +1,26 @@
+-----------------------------------------------------------------ACCESS COMMAND PALLETTE
+ctrl+shift+p
+
+-----------------------------------------------------------------USEFUL COMMAND PALLETTE COMMANDS
+Settings Sync: Show Synced Data
+Settings (JSON)
+
+-----------------------------------------------------------------OTHER USEFUL COMMANDS
+# sort imports with isort
+shift + alt + o
+
+-----------------------------------------------------------------IF SETTINGS SYNC DOESN'T WORK
+# sign out through sidebar
+accounts icon -> (account) -> sign out
+---
+ctrl+shift+p -> Settings Sync: Turn Off
+sidebar -> accounts icon -> backup and sync settings
+select items to sync -> sign in
+select Github or Microsoft
+
+
+
+
+
+
+

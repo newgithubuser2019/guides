@@ -1,0 +1,60 @@
+-----------------------------------------------------------------SET PROXY SERVERS (IF BEHIND COMPANY FIREWALL)
+# create .condarc file
+conda config
+---
+# check location of the .condarc file
+conda info
+---
+# add these lines to the .condarc file
+proxy_servers:
+    http: http:<username>:<password>@<proxy_ip_address>:<port>
+    https: http:<username>:<password>@<proxy_ip_address>:<port>
+
+-----------------------------------------------------------------REMOVE PROXY SERVERS
+conda config --remove-key proxy_servers
+conda config --show proxy_servers
+
+----------------------------------------------------------------UPDATE CONDA
+conda update -n base conda
+
+----------------------------------------------------------------IF UPDATE FAILS
+# use install and specify version:
+conda install -n base conda>=<version_number>
+
+----------------------------------------------------------------CREATE A NEW ENVIRONMENT
+cd "<folder_containing_environment.yml>"
+---
+conda env create
+
+----------------------------------------------------------------DISPLAY AVAILABLE ENVIRONMENTS
+conda info --envs
+OR
+conda env list
+
+----------------------------------------------------------------ACTIVATE AN ENVIRONMENT
+# Activate env by name:
+conda activate <ENVname>
+OR
+# Activate env by path:
+conda activate /Users/<USERname>/<miniconda3>/envs/<ENVname>
+
+----------------------------------------------------------------LIST INSTALLED PACKAGES
+conda activate <ENVname>
+conda list
+
+----------------------------------------------------------------UPDATE DEPENDENCIES
+cd "<folder_containing_environment.yml>"
+---
+conda env update --prune
+---
+# if pip install was used it is best to recreate the environment:
+conda deactivate
+conda env remove --name <ENVNAME>
+conda env create
+
+----------------------------------------------------------------FREE UP DISK SPACE
+# first check how much space can be freed
+conda clean --all --yes --dry-run
+---
+# remove unused stuff
+conda clean --all --yes

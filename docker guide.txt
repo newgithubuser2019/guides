@@ -1,0 +1,53 @@
+----------------------------------------------------------------MOVE DOCKER DISK IMAGE TO ANOTHER DRIVE
+Open Docker Desktop
+Click the Settings (gear icon) in the top right
+Navigate to Resources -> Advanced
+In the Disk image location section, click Browse and select the new folder on your preferred drive
+Click Apply & Restart
+
+----------------------------------------------------------------SPIN UP CONTAINER(-S)
+cd "<folder containing compose.yaml file>"
+---
+docker compose up -d
+
+----------------------------------------------------------------DESTROY CONTAINER(-S)
+cd "<folder containing compose.yaml file>"
+---
+docker compose down
+
+----------------------------------------------------------------UPDATE IMAGE(-S)
+cd "<folder containing compose.yaml file>"
+---
+docker compose pull
+
+----------------------------------------------------------------REMOVE DANGLING IMAGES
+cd "<folder containing compose.yaml file>"
+---
+docker image prune
+
+----------------------------------------------------------------LIST LOCAL IMAGE(-S)
+docker image ls
+
+----------------------------------------------------------------CHECK USED DISK SPACE
+docker system df
+
+----------------------------------------------------------------FREE UP DISK SPACE (REMOVE UNUSED FILES)
+docker system prune
+
+----------------------------------------------------------------SHRINK VIRTUAL DISK
+# exit docker desktop
+---
+# run commands in powershell:
+wsl --shutdown
+diskpart
+---
+# run commands in diskpart command line:
+select vdisk file="D:\programming\_installation\docker\_docker_desktop_wsl\DockerDesktopWSL\disk\docker_data.vhdx"
+attach vdisk readonly
+compact vdisk
+detach vdisk
+exit
+---
+# run commands in powershell:
+wsl
+exit

@@ -1,0 +1,165 @@
+-----------------------------------------------------------------UPDATE GIT
+git update-git-for-windows
+
+-----------------------------------------------------------------SAVE HISTORY
+# always close git terminal window with "exit" command
+# otherwise git won't remember previously entered commands and you would have to retype everything
+
+-----------------------------------------------------------------EDIT .INPUTRC FILE
+touch .inputrc
+nano ~/.inputrc
+---
+# disable visual bell
+set bell-style none
+OR
+set bell-style audible
+---
+# disable bracketed paste
+set enable-bracketed-paste off
+---
+# Press Ctrl + O then Enter to save the file
+# Press Ctrl + X to exit the editor
+
+-----------------------------------------------------------------ADD CREDENTIALS
+git config --global user.name "Dmitry Potapov"
+git config --global user.email "potapov_d@list.ru"
+
+-----------------------------------------------------------------SET PROXY SERVERS (IF BEHIND COMPANY FIREWALL)
+git config --global http.proxy http://<username>:<password>@<proxy_ip_address>:<port>
+git config --global https.proxy https://<username>:<password>@<proxy_ip_address>:<port>
+
+-----------------------------------------------------------------REMOVE PROXY SERVERS
+git config --global --unset http.proxy
+git config --global --unset https.proxy
+
+-----------------------------------------------------------------CREATING NEW REPOSITORY
+cd "<project folder>"
+git status
+git init
+---
+# Add changes to a file with the name FILENAME to the staging area. Replace FILENAME with the name of your file
+git add <FILENAME>
+---
+# Add all saved contents of the directory to the staging area
+git add .
+---
+# Create a commit (checkpoint) of the changes in the staging area
+git commit -m "<Your message here>"
+
+-----------------------------------------------------------------VIEW HISTORY OF COMMITS
+git log
+OR
+git log --oneline
+
+-----------------------------------------------------------------REVERTING CHANGES (FILE LEVEL)
+# git restore cannot touch your commit history. It strictly targets your unstaged local modifications or the staging area (index)
+---
+# Discard Unstaged Local Changes
+git restore <filename>
+---
+# Discard all unstaged changes across your entire project
+git restore .
+---
+# Unstage a File (Undo git add)
+git restore --staged <filename>
+---
+# Unstage everything currently prepared for a commit
+git restore --staged .
+---
+# Restore a File from a Specific Past Commit
+git restore --source <commit_hash_or_branch> <filename>
+
+-----------------------------------------------------------------REVERTING CHANGES (COMMIT LEVEL)
+# Think of git reset as a tool for traveling backward through your commit timeline. It changes where your current branch points
+---
+# Destroys the last commit but leaves your changes staged in the index, ready to be recommitted
+git reset --soft HEAD~1
+---
+# Destroys the last commit and unstages the changes, keeping them in your working directory
+git reset --mixed HEAD~1
+---
+# Destroys the last commit and permanently deletes all modified files and staged work. Use with extreme caution
+git reset --hard HEAD~1
+
+-----------------------------------------------------------------PUSHING LOCAL TO REMOTE
+# Create new repository on github.com
+---
+# Set the new remote
+git remote add origin <REMOTE_URL>
+---
+# Verifies the new remote URL
+git remote -v
+---
+# Push the changes in your local repository up to the remote repository you specified as the origin FOR THE FIRST TIME
+# The -u creates an association between the local and remote branches, enabling remote tracking
+# You only need to use the -u option once. It is best to do this the first time you push a local branch to GitHub
+git push -u origin <BRANCH_NAME>
+---
+# Subsequent pushes
+git push origin <BRANCH_NAME>
+
+-----------------------------------------------------------------TRACKING
+# View current associations
+git branch -vv
+---
+# Link an existing branch
+git branch --set-upstream-to=origin/<remote-branch> <local-branch>
+---
+# Remove an association without deleting the branch
+git branch --unset-upstream
+
+-----------------------------------------------------------------CLONING REPOSITORY
+# Change to the folder that will contain the downloaded repository folder
+cd "<REPPSITORY_FOLDER>"
+---
+# Download the repository folder into the current directory. The clone command includes the init command (so you do not need to init a cloned repo)
+git clone <REPOSITORY_URL>
+
+-----------------------------------------------------------------PULLING CHANGES
+# Pull changes down from a remove server (e.g., GitHub). Note that "git pull" is actually a shortcut for a "git fetch" followed by a "git merge"
+git pull
+
+-----------------------------------------------------------------BRANCHES
+# See a list of current branches in the repo
+git branch
+---
+# Delete a branch
+git branch -d <BRANCH_NAME>
+---
+# Rename branch
+git branch -m <OLD_BRANCH_NAME> <NEW_BRANCH_NAME>
+---
+# Switch to an existing branch. You can switch only if the current branch has no files in the staging area
+git switch <branch-name>
+---
+# Discard local changes and force switch
+git switch --discard-changes <branch-name>
+---
+# Create and switch to a new branch
+git switch -c <new-branch-name>
+---
+# Create a local copy matching the remote branch without merging
+git fetch origin
+git switch <branch-name>
+---
+# Merge OTHER_BRANCH into the CURRENT_BRANCH branch
+git switch <CURRENT_BRANCH>
+git merge <OTHER_BRANCH>
+
+-----------------------------------------------------------------HANDLING MERGE CONFLICTS
+# Edit all conflicting files -> check current status
+git status
+---
+# Add and commit all updated files
+git add .
+git commit -m "Resolved merge conflict"
+---
+# Or you can cancel the merge process
+git merge --abort
+
+-----------------------------------------------------------------FEATURE BRANCHES
+# The master branch should always contain “production-level” code
+# Feature branches — branches that are each dedicated to a different feature
+# Each branch is based on a feature of the project, not a particular person
+# All feature branches branch off of master, and are allowed to contain temporary or even broken code
+# Feature branches can be used as part of either the centralized workflow or the forking workflow
