@@ -82,7 +82,7 @@ git reset --mixed HEAD~1
 git reset --hard HEAD~1
 
 -----------------------------------------------------------------PUSHING LOCAL TO REMOTE
-# Create new repository on github.com
+# Create new repository on a remote server (e.g., GitHub)
 ---
 # Set the new remote
 git remote add origin <REMOTE_URL>
@@ -116,7 +116,7 @@ cd "<REPPSITORY_FOLDER>"
 git clone <REPOSITORY_URL>
 
 -----------------------------------------------------------------PULLING CHANGES
-# Pull changes down from a remove server (e.g., GitHub). Note that "git pull" is actually a shortcut for a "git fetch" followed by a "git merge"
+# Pull changes down from a remote server (e.g., GitHub). Note that "git pull" is actually a shortcut for a "git fetch" followed by a "git merge"
 git pull
 
 -----------------------------------------------------------------BRANCHES
