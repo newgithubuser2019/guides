@@ -9,6 +9,7 @@ conda info
 proxy_servers:
     http: http:<username>:<password>@<proxy_ip_address>:<port>
     https: http:<username>:<password>@<proxy_ip_address>:<port>
+ssl_verify: false
 
 -----------------------------------------------------------------REMOVE PROXY SERVERS
 conda config --remove-key proxy_servers
