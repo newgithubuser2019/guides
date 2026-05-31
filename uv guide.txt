@@ -13,6 +13,26 @@ winget install --id=astral-sh.uv  -e --location "D:\programming\_installation\uv
 ----------------------------------------------------------------UPDATE (WINGET METHOD)
 winget upgrade astral-sh.uv
 
+-----------------------------------------------------------------SET PROXY SERVERS (IF BEHIND COMPANY FIREWALL)
+# uv inherits proxy settings directly from your shell and does not have an internal proxy toggle
+# run in powershell
+export HTTP_PROXY="http://<username>:<password>@<proxy_ip_address>:<port>"
+export HTTPS_PROXY="http://<username>:<password>@<proxy_ip_address>:<port>"
+---
+# tell uv to use your operating system’s certificate store
+uv add --native-tls requests
+---
+# or make it permanent in your config
+# ~/.config/uv/uv.toml
+native-tls = true
+
+-----------------------------------------------------------------REMOVE PROXY SERVERS
+# run in powershell
+Remove-Item Env:\HTTP_PROXY
+Remove-Item Env:\HTTPS_PROXY
+Remove-Item Env:\http_proxy
+Remove-Item Env:\https_proxy
+
 ----------------------------------------------------------------CREATE PROJECT
 cd "<project folder>"
 uv init

@@ -1,0 +1,73 @@
+----------------------------------------------------------------INSTALL
+powershell -ExecutionPolicy Bypass -c "irm -useb https://pixi.sh/install.ps1 | iex"
+---
+# verify installation
+pixi --version
+
+----------------------------------------------------------------UPDATE
+pixi self-update
+
+-----------------------------------------------------------------SET PROXY SERVERS (IF BEHIND COMPANY FIREWALL)
+# navigate to config.toml file
+Windows: %APPDATA%\pixi\config.toml
+---
+# add these lines
+[proxy-config]
+http = "http://<username>:<password>@<proxy_ip_address>:<port>"
+https = "http://<username>:<password>@<proxy_ip_address>:<port>"
+non-proxy-hosts = [".cn", "localhost", "[::1]"]
+
+-----------------------------------------------------------------REMOVE PROXY SERVERS
+# Global proxy settings
+pixi config unset --global proxy-config
+---
+# Local (project-specific) proxy settings
+pixi config unset --local proxy-config
+---
+# Alternatively, you can manually open your global config file (usually located at ~/.pixi/config.toml)
+# and delete or comment out the [proxy-config] section
+
+----------------------------------------------------------------CREATE PROJECT
+cd "<project folder>"
+pixi init
+---
+# additionally conda env file can be imported into pixi
+pixi add --manifest-path <environment.yml location>
+
+----------------------------------------------------------------INSTALL DEPENDENCIES
+# navigate to project directory -> add dependencies to pixi.toml
+---
+cd "<project folder>"
+pixi install
+
+----------------------------------------------------------------UPDATE DEPENDENCIES
+cd "<project folder>"
+pixi update
+
+----------------------------------------------------------------ENVIRONMENT MANAGEMENT
+# Show environment info
+pixi info
+---
+# List installed packages
+pixi list
+
+----------------------------------------------------------------EXECUTE SCRIPT
+# Activate the environment and run commands
+pixi run python <your_script>.py
+---
+# Or start a shell in the environment
+pixi shell
+
+----------------------------------------------------------------UNINSTALL
+# Remove any cached data
+pixi clean cache
+---
+# Remove the environments from your pixi workspaces
+cd path/to/workspace && pixi clean
+---
+# Remove the pixi and its global environments
+rm -r ~/.pixi
+---
+# Remove the pixi binary from your PATH
+# For Linux and macOS, remove ~/.pixi/bin from your PATH in your shell configuration file (e.g., ~/.bashrc, ~/.zshrc
+# For Windows, remove %UserProfile%\.pixi\bin from your PATH environment variable
