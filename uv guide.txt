@@ -1,0 +1,52 @@
+----------------------------------------------------------------INSTALL
+powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
+
+----------------------------------------------------------------UPDATE
+uv self update
+
+----------------------------------------------------------------INSTALL (WINGET METHOD)
+winget install --id=astral-sh.uv  -e
+OR
+# install to a specific location
+winget install --id=astral-sh.uv  -e --location "D:\programming\_installation\uv\_uv_binaries_folder"
+
+----------------------------------------------------------------UPDATE (WINGET METHOD)
+winget upgrade astral-sh.uv
+
+----------------------------------------------------------------CREATE PROJECT
+cd "<project folder>"
+uv init
+
+----------------------------------------------------------------INSTALL DEPENDENCIES
+# navigate to project directory -> add dependencies to pyproject.toml
+---
+cd "<project folder>"
+uv sync
+
+----------------------------------------------------------------VIEW DEPENDENCY TREE
+cd "<project folder>"
+uv tree
+
+----------------------------------------------------------------UPDATE DEPENDENCIES
+cd "<project folder>"
+uv sync --upgrade
+
+----------------------------------------------------------------EXECUTE SCRIPT
+uv run <name>.py
+
+----------------------------------------------------------------UNINSTALL
+# Clean up stored data
+uv cache clean
+rm -r "$(uv python dir)"
+rm -r "$(uv tool dir)"
+---
+# Remove data in the following folders
+%LOCALAPPDATA%\uv
+%APPDATA%\uv
+%PROGRAMDATA%\uv
+%USERPROFILE%\.local\bin
+---
+# Remove binaries - uv.exe, uvx.exe, uvw.exe
+rm $HOME\.local\bin\uv.exe
+rm $HOME\.local\bin\uvx.exe
+rm $HOME\.local\bin\uvw.exe
