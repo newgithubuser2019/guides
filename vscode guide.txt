@@ -4,9 +4,10 @@ ctrl+shift+p
 -----------------------------------------------------------------USEFUL COMMAND PALLETTE COMMANDS
 Settings Sync: Show Synced Data
 Settings (JSON)
+Organize imports
 
 -----------------------------------------------------------------OTHER USEFUL COMMANDS
-# sort imports with isort
+# sort imports with isort or ruff
 shift + alt + o
 
 -----------------------------------------------------------------IF SETTINGS SYNC DOESN'T WORK

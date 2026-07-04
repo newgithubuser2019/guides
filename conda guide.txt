@@ -2,6 +2,9 @@
 # create .condarc file
 conda config
 ---
+# navigate to the following folder
+C:\Users\<USERNAME>\.condarc
+OR
 # check location of the .condarc file
 conda info
 ---
