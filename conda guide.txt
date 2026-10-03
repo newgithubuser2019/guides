@@ -19,7 +19,12 @@ conda config --remove-key proxy_servers
 conda config --show proxy_servers
 
 ----------------------------------------------------------------UPDATE CONDA
+# 1
 conda update -n base conda
+# 2
+conda update -n base --all
+# 3
+conda self update
 
 ----------------------------------------------------------------IF UPDATE FAILS
 # use install and specify version:

@@ -1,9 +1,10 @@
------------------------------------------------------------------UPDATE GIT
-git update-git-for-windows
-
 -----------------------------------------------------------------SAVE HISTORY
 # always close git terminal window with "exit" command
 # otherwise git won't remember previously entered commands and you would have to retype everything
+
+-----------------------------------------------------------------UPDATE GIT
+# run in powershell
+git update-git-for-windows
 
 -----------------------------------------------------------------EDIT .INPUTRC FILE
 touch .inputrc
@@ -17,8 +18,10 @@ set bell-style audible
 # disable bracketed paste
 set enable-bracketed-paste off
 ---
-# Press Ctrl + O then Enter to save the file
-# Press Ctrl + X to exit the editor
+# to save the file
+Ctrl + O --> Enter
+# to exit the editor
+Ctrl + X
 
 -----------------------------------------------------------------ADD CREDENTIALS
 git config --global user.name "Dmitry Potapov"
@@ -36,7 +39,8 @@ git config --global --unset https.proxy
 cd "<project folder>"
 git status
 git init
----
+
+-----------------------------------------------------------------ADD AND COMMIT
 # Add changes to a file with the name FILENAME to the staging area. Replace FILENAME with the name of your file
 git add <FILENAME>
 ---
